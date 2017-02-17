@@ -1,0 +1,4 @@
+---
+- name: Install keepassx
+  apt: name=keepassx
+  sudo: yes

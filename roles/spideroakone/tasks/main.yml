@@ -1,0 +1,19 @@
+---
+- name: Check if {{ package.name }} is installed
+  command: dpkg-query -W {{ package.name }}
+  register: spideroakone_check_deb
+  failed_when: spideroakone_check_deb.rc > 1
+  changed_when: spideroakone_check_deb.rc == 1
+
+- name: Download SpiderOak deb
+  get_url:
+    url: https://spideroak.com/getbuild?platform=ubuntu&arch={{ ansible_architecture }}
+    dest: "/home/{{ ansible_env.USER }}/Downloads/{{ package.name }}.deb"
+  when: spideroakone_check_deb.rc == 1
+
+- name: Install SpiderOak
+  apt:
+    deb: "/home/{{ ansible_env.USER }}/Downloads/{{ package.name }}.deb"
+    state: present
+  when: spideroakone_check_deb.rc == 1
+  sudo: yes
