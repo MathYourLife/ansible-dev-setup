@@ -1,0 +1,9 @@
+---
+- name: Initial Laptop Configuration
+  hosts: localhost
+  connection: local
+
+  roles:
+    - sublime
+    - google-chrome
+    - docker

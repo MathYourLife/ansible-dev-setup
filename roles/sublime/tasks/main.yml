@@ -1,0 +1,17 @@
+---
+- name: Check if {{ package.name }} is installed
+  command: dpkg-query -W {{ package.name }}
+  register: sublime_text_check_deb
+  failed_when: sublime_text_check_deb.rc > 1
+  changed_when: sublime_text_check_deb.rc == 1
+
+- name: Download sublime text 3 deb
+  get_url: 
+    url: "{{ package.url }}"
+    dest: "/home/{{ ansible_env.USER }}/Downloads/{{ package.name }}.deb"
+  when: sublime_text_check_deb.rc == 1
+
+- name: Install {{ package.name }} from deb
+  apt: deb="/home/{{ ansible_env.USER }}/Downloads/{{ package.name }}.deb"
+  sudo: true
+  when: sublime_text_check_deb.rc == 1
