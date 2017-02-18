@@ -1,4 +1,10 @@
 ---
+- name: Install cli tools
+  apt: pkg={{ item }} state=present
+  with_items:
+    - xclip
+  sudo: yes
+
 - name: Setting bash aliases
   blockinfile:
     dest: "{{ ansible_env.HOME }}/.bashrc"
