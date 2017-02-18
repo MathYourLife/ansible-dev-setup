@@ -8,10 +8,10 @@
 - name: Download sublime text 3 deb
   get_url: 
     url: "{{ package.url }}"
-    dest: "/home/{{ ansible_env.USER }}/Downloads/{{ package.name }}.deb"
+    dest: "{{ ansible_env.HOME }}/Downloads/{{ package.name }}.deb"
   when: sublime_text_check_deb.rc == 1
 
 - name: Install {{ package.name }} from deb
-  apt: deb="/home/{{ ansible_env.USER }}/Downloads/{{ package.name }}.deb"
+  apt: deb="{{ ansible_env.HOME }}/Downloads/{{ package.name }}.deb"
   sudo: true
   when: sublime_text_check_deb.rc == 1

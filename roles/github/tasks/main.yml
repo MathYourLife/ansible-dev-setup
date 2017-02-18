@@ -3,14 +3,14 @@
   apt: name=git state=present
 
 - file:
-    path: /home/{{ ansible_env.USER }}/.ssh/github
+    path: "{{ ansible_env.HOME }}/.ssh/github"
     state: directory
     mode: 0700
 
 - name: github ssh key
-  shell: ssh-keygen -b 8192 -t rsa -f /home/{{ ansible_env.USER }}/.ssh/github/id_rsa -q -N ""
+  shell: ssh-keygen -b 8192 -t rsa -f {{ ansible_env.HOME }}/.ssh/github/id_rsa -q -N ""
   args:
-    creates: /home/{{ ansible_env.USER }}/.ssh/github/id_rsa
+    creates: "{{ ansible_env.HOME }}/.ssh/github/id_rsa"
 
 - name: Git global configs
   git_config:
