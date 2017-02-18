@@ -1,0 +1,26 @@
+---
+- name: Setting bash aliases
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - bash aliases"
+    content: |
+      alias ..="cd .."
+      alias bc='bc -l'
+      alias clip='xclip -sel clip'
+
+- name: Creating cdr function
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - cdr function"
+    content: |
+      # Walk backwards until you hit a "root" folder
+      function cdr() {
+        # for git repos we can make 1 jump
+        git_root=`git rev-parse --show-toplevel 2> /dev/null`
+        if [ "$git_root" != "" ]
+        then
+          cd $git_root
+          return 0
+        fi
+      }
+
