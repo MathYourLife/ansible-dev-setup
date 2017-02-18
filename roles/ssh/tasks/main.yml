@@ -1,0 +1,28 @@
+---
+# from: https://github.com/krmboya/ansible-ubuntu-common/blob/master/tasks/ssh.yml
+- name: Install ssh packages
+  apt: pkg={{ item }} state=present
+  with_items:
+    - openssh-server
+    - fail2ban
+  sudo: yes
+
+- name: Ensure the ssh server daemon is set to start on reboot
+  service: name=ssh enabled=yes state=started
+  sudo: yes
+
+- name: Ensure the ssh server daemon is set to start on reboot
+  service: name=fail2ban enabled=yes state=started
+  sudo: yes
+
+- name: Dissallows root SSH access
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" 
+              state=present line="PermitRootLogin no"
+  notify: restart sshd
+  sudo: yes
+
+- name: Disables SSH password authentication
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication"
+              line="PasswordAuthentication no" state=present
+  notify: restart sshd
+  sudo: yes

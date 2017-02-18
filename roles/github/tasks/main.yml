@@ -21,7 +21,6 @@
     - {name: 'color.ui', value: 'true'}
     - {name: 'alias.lg', value: 'log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cD) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset" --abbrev-commit'}
 
-
 - name: Add git bash completion
   blockinfile:
     dest: "{{ ansible_env.HOME }}/.bashrc"
