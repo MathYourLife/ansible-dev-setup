@@ -12,6 +12,22 @@
   args:
     creates: "{{ ansible_env.HOME }}/.ssh/github/id_rsa"
 
+- name: Ensure ~/.ssh directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/.ssh"
+    state: directory
+
+- name: Setting github ssh config
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.ssh/config"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - github ssh config"
+    create: yes
+    content: |
+      Host github.com
+          HostName github.com
+          User git
+          IdentityFile {{ ansible_env.HOME }}/.ssh/github/id_rsa
+
 - name: Git global configs
   git_config:
     name={{item.name}}
