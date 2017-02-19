@@ -3,6 +3,7 @@
   apt: pkg={{ item }} state=present
   with_items:
     - xclip
+    - htop
   sudo: yes
 
 - name: Setting bash aliases
