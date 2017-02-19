@@ -1,0 +1,21 @@
+---
+- name: Setting golang variables
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - golang env"
+    content: |
+      export GOROOT={{ go.goroot_base }}/{{ go.version }}/go
+      export GOPATH={{ go.gopath }}
+      export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+
+- name: Ensure goroot exists for {{ go.version }}
+  file:
+    path: "{{ go.goroot_base }}/{{ go.version }}"
+    state: directory
+    recurse: yes
+
+- unarchive:
+    src: "https://storage.googleapis.com/golang/go{{ go.version }}.linux-amd64.tar.gz"
+    dest: "{{ go.goroot_base }}/{{ go.version }}"
+    creates: "{{ go.goroot_base }}/{{ go.version }}/go"
+    copy: no

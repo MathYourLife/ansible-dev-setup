@@ -13,3 +13,4 @@
     - ntp
     - ssh
     - bash
+    - golang

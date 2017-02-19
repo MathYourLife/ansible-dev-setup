@@ -1,0 +1,5 @@
+---
+go:
+  goroot_base: "{{ ansible_env.HOME }}/go"
+  gopath: "{{ ansible_env.HOME }}/gopath"
+  version: 1.8
