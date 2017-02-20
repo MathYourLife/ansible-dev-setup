@@ -1,0 +1,7 @@
+---
+- name: Install cli tools
+  apt: pkg={{ item }} state=present
+  with_items:
+    - python-virtualenv
+    - python3-virtualenv
+  sudo: yes
