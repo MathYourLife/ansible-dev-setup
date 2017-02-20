@@ -6,6 +6,10 @@
   user: name={{ docker_user }} group={{ docker_group }} state=present
   sudo: yes
 
+- name: Add current user ({{ lookup('env','USER') }}) to docker group
+  user: name={{ lookup('env','USER') }} group={{ docker_group }} state=present
+  sudo: yes
+
 - name: Create docker.d systemd directory if it doesn't exist
   file:
     path: /etc/systemd/system/docker.service.d
