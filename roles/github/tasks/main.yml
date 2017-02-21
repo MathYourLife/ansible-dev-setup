@@ -22,6 +22,7 @@
     dest: "{{ ansible_env.HOME }}/.ssh/config"
     marker: "# {mark} ANSIBLE MANAGED BLOCK - github ssh config"
     create: yes
+    mode: 0600
     content: |
       Host github.com
           HostName github.com
