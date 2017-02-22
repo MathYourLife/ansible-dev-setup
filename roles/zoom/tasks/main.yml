@@ -1,0 +1,19 @@
+---
+- name: Check if {{ package.name }} is installed
+  command: dpkg-query -W {{ package.name }}
+  register: zoom_check_deb
+  failed_when: zoom_check_deb.rc > 1
+  changed_when: zoom_check_deb.rc == 1
+
+- name: Download SpiderOak deb
+  get_url:
+    url: https://zoom.us/client/latest/zoom_amd64.deb
+    dest: "{{ ansible_env.HOME }}/Downloads/{{ package.name }}.deb"
+  when: zoom_check_deb.rc == 1
+
+- name: Install SpiderOak
+  apt:
+    deb: "{{ ansible_env.HOME }}/Downloads/{{ package.name }}.deb"
+    state: present
+  when: zoom_check_deb.rc == 1
+  sudo: yes
