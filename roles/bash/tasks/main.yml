@@ -4,7 +4,7 @@
   with_items:
     - xclip
     - htop
-  sudo: yes
+  become: yes
 
 - name: Setting bash aliases
   blockinfile:

@@ -5,24 +5,24 @@
   with_items:
     - openssh-server
     - fail2ban
-  sudo: yes
+  become: yes
 
 - name: Ensure the ssh server daemon is set to start on reboot
   service: name=ssh enabled=yes state=started
-  sudo: yes
+  become: yes
 
 - name: Ensure the ssh server daemon is set to start on reboot
   service: name=fail2ban enabled=yes state=started
-  sudo: yes
+  become: yes
 
 - name: Dissallows root SSH access
   lineinfile: dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" 
               state=present line="PermitRootLogin no"
   notify: restart sshd
-  sudo: yes
+  become: yes
 
 - name: Disables SSH password authentication
   lineinfile: dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication"
               line="PasswordAuthentication no" state=present
   notify: restart sshd
-  sudo: yes
+  become: yes

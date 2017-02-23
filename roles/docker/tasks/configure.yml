@@ -4,18 +4,18 @@
 
 - name: Create and add docker user to docker group
   user: name={{ docker_user }} group={{ docker_group }} state=present
-  sudo: yes
+  become: yes
 
 - name: Add current user ({{ lookup('env','USER') }}) to docker group
   user: name={{ lookup('env','USER') }} group={{ docker_group }} state=present
-  sudo: yes
+  become: yes
 
 - name: Create docker.d systemd directory if it doesn't exist
   file:
     path: /etc/systemd/system/docker.service.d
     state: directory
     mode: 0755
-  sudo: yes
+  become: yes
 
 - name: Configure docker daemon service
   template:
@@ -24,7 +24,7 @@
     mode: 0644
   notify:
     - restart docker
-  sudo: yes
+  become: yes
 
 - name: Enable Docker
   service: name=docker enabled=yes

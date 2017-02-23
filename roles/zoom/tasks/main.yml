@@ -16,4 +16,4 @@
     deb: "{{ ansible_env.HOME }}/Downloads/{{ package.name }}.deb"
     state: present
   when: zoom_check_deb.rc == 1
-  sudo: yes
+  become: yes

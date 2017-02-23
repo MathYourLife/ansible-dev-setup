@@ -4,4 +4,4 @@
   with_items:
     - python-virtualenv
     - python3-virtualenv
-  sudo: yes
+  become: yes

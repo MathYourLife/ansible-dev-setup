@@ -4,8 +4,8 @@
   with_items:
     - ntp
     - ntpdate
-  sudo: yes
+  become: yes
 
 - name: Ensure ntpd enabled at boot and started
   service: name=ntp state=started enabled=yes
-  sudo: yes
+  become: yes
