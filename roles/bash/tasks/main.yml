@@ -4,6 +4,7 @@
   with_items:
     - xclip
     - htop
+    - curl
   become: yes
 
 - name: Setting bash aliases
