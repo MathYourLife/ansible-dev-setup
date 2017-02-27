@@ -1,0 +1,12 @@
+---
+- name: Ensure gcloud path exists
+  file:
+    path: "{{ ansible_env.HOME }}/gcloud"
+    state: directory
+    recurse: yes
+
+- unarchive:
+    src: "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-145.0.0-linux-x86_64.tar.gz"
+    dest: "{{ ansible_env.HOME }}/gcloud"
+    creates: "{{ ansible_env.HOME }}/gcloud/google-cloud-sdk/bin/gcloud"
+    copy: no
