@@ -5,13 +5,13 @@
   failed_when: zoom_check_deb.rc > 1
   changed_when: zoom_check_deb.rc == 1
 
-- name: Download SpiderOak deb
+- name: Download Zoom deb
   get_url:
     url: https://zoom.us/client/latest/zoom_amd64.deb
     dest: "{{ ansible_env.HOME }}/Downloads/{{ package.name }}.deb"
   when: zoom_check_deb.rc == 1
 
-- name: Install SpiderOak
+- name: Install Zoom
   apt:
     deb: "{{ ansible_env.HOME }}/Downloads/{{ package.name }}.deb"
     state: present
