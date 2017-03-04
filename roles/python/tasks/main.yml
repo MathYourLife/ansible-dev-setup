@@ -4,4 +4,5 @@
   with_items:
     - python-virtualenv
     - python3-virtualenv
+    - libsnappy-dev
   become: yes
