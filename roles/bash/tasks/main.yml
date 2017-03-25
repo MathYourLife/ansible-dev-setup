@@ -1,10 +1,16 @@
 ---
+- name: Only run "update_cache=yes" if the last one is more than 3600 seconds ago
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
 - name: Install cli tools
   apt: pkg={{ item }} state=present
   with_items:
     - xclip
     - htop
     - curl
+    - pkg-config
   become: yes
 
 - name: Setting bash aliases
