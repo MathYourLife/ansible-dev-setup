@@ -3,6 +3,7 @@
   apt:
     update_cache: yes
     cache_valid_time: 3600
+  become: yes
 
 - name: Install cli tools
   apt: pkg={{ item }} state=present
@@ -20,7 +21,7 @@
     content: |
       alias ..="cd .."
       alias bc='bc -l'
-      alias clip='xclip -sel clip'
+      alias pbcopy='xclip -sel clip'
 
 - name: Creating cdr function
   blockinfile:
