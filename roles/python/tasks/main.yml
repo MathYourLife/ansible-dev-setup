@@ -7,4 +7,5 @@
     - libsnappy-dev
     - python-dev
     - python3-dev
+    - libssl-dev
   become: yes

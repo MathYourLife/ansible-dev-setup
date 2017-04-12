@@ -1,0 +1,6 @@
+---
+- name: Install security packages tools
+  apt: pkg={{ item }} state=present
+  with_items:
+    - pass
+  become: yes
