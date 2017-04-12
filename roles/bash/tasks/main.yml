@@ -5,7 +5,7 @@
     cache_valid_time: 3600
   become: yes
 
-- name: Install cli tools
+- name: Install bash packages
   apt: pkg={{ item }} state=present
   with_items:
     - xclip
