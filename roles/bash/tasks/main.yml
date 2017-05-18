@@ -12,6 +12,7 @@
     - htop
     - curl
     - pkg-config
+    - gparted
   become: yes
 
 - name: Setting bash aliases
@@ -23,6 +24,7 @@
       alias bc='bc -l'
       alias pbcopy='xclip -sel clip'
       alias DIR='echo "DIR=\"\$( cd \"\$( dirname \"\${BASH_SOURCE[0]}\" )\" && pwd )\""'
+      alias subl='subl -a'
 
 - name: Creating cdr function
   blockinfile:

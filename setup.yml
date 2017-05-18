@@ -20,3 +20,5 @@
     - gcloud
     - aws
     - unix-pass
+    - printers
+    - graphics
