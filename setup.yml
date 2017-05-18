@@ -3,22 +3,22 @@
   hosts: localhost
   connection: local
 
-
   roles:
-    - sublime
-    - google-chrome
-    - docker
-    - spideroakone
-    - keepassx
-    - github
-    - ntp
-    - ssh
-    - bash
-    - golang
-    - python
-    - zoom
-    - gcloud
     - aws
-    - unix-pass
-    - printers
+    - bash
+    - docker
+    - gcloud
+    - github
+    - golang
+    - google-chrome
     - graphics
+    - keepassx
+    - ntp
+    - pentest
+    - printers
+    - python
+    - spideroakone
+    - ssh
+    - sublime
+    - unix-pass
+    - zoom
