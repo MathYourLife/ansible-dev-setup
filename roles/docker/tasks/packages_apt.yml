@@ -28,3 +28,8 @@
     name: docker-ce
     state: present
   become: yes
+
+- name: install docker-compose
+  pip:
+    name: docker-compose
+  become: true
