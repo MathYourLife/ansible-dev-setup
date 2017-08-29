@@ -1,0 +1,6 @@
+---
+- name: Install system latex packages
+  apt: name={{ item }}
+  with_items:
+    - texlive-latex-extra
+  become: yes
