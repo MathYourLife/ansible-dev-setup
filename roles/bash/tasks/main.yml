@@ -8,11 +8,12 @@
 - name: Install bash packages
   apt: pkg={{ item }} state=present
   with_items:
-    - xclip
-    - htop
     - curl
-    - pkg-config
     - gparted
+    - htop
+    - jq
+    - pkg-config
+    - xclip
   become: yes
 
 - name: Setting bash aliases
