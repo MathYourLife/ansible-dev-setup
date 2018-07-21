@@ -26,6 +26,7 @@
       alias pbcopy='xclip -sel clip'
       alias DIR='echo "DIR=\"\$( cd \"\$( dirname \"\${BASH_SOURCE[0]}\" )\" && pwd )\""'
       alias subl='subl -a'
+      alias atom='atom -a'
 
 - name: Creating cdr function
   blockinfile:
@@ -42,4 +43,3 @@
           return 0
         fi
       }
-
