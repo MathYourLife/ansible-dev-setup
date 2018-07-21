@@ -6,9 +6,9 @@
     - xsane
     - xscreensaver
     - xdotool
+    - graphviz
   become: yes
 
 - name: Remove light-locker install to prevent locking problems
   apt: pkg=light-locker state=absent
   become: yes
-  
